@@ -1,3 +1,10 @@
+// בס"ד
+
+function loadFromStorage(key) {
+  var val = localStorage.getItem(key)
+  return val ? JSON.parse(val) : null
+}
+
 function makeId(length = 5) {
   var txt = ''
   var possible =
@@ -33,4 +40,5 @@ export const utilService = {
   makeId,
   getRandomInt,
   debounce,
+  loadFromStorage,
 }

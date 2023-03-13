@@ -1,7 +1,7 @@
 // בס"ד
 
 import { createStore } from 'vuex'
-import { toystore } from './toy.store.js'
+import { toyStore } from './toy.store.js'
 
 import { toyService } from '../services/toy.service'
 

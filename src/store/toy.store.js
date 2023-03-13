@@ -8,10 +8,10 @@ export const toyStore = {
     toysCount: null,
     currToy: null,
     filterBy: {
-      txt: '',
-      status: '',
-      pageIdx: 0,
-      pageSize: 5,
+      // txt: '',
+      // status: '',
+      // pageIdx: 0,
+      // pageSize: 5,
     },
     sortBy: {
       by: '',
@@ -35,23 +35,22 @@ export const toyStore = {
     toysToDisplay({ filterBy, toys }) {
       if (!toys) return null
 
-      const { status, txt, pageIdx, pageSize } = filterBy
+      // const { status, txt, pageIdx, pageSize } = filterBy
       let filteredToys = toys
 
-      const regex = new RegExp(txt, 'i')
-      filteredToys = filteredToys.filter(toy => regex.test(toy.txt))
+      // const regex = new RegExp(txt, 'i')
+      // filteredToys = filteredToys.filter(toy => regex.test(toy.txt))
 
-      if (status) {
-        filteredToys = filteredToys.filter(
-          toy =>
-            (toy.isDone && status === 'done') ||
-            (!toy.isDone && status === 'active')
-        )
-      }
+      // if (status) {
+      //   filteredToys = filteredToys.filter(
+      //     toy =>
+      //       (toy.isDone && status === 'done') ||
+      //       (!toy.isDone && status === 'active')
+      //   )
+      // }
 
-      const startIdx = pageIdx * pageSize
-      filteredToys = filteredToys.slice(startIdx, startIdx + pageSize)
-
+      // const startIdx = pageIdx * pageSize
+      // filteredToys = filteredToys.slice(startIdx, startIdx + pageSize)
       return filteredToys
     },
   },
@@ -79,8 +78,7 @@ export const toyStore = {
   },
   actions: {
     loadToys(context) {
-      console.log('context', context)
-      toyService
+      return toyService
         .query()
         .then(toys => {
           context.commit({ type: 'setToys', toys })
@@ -88,7 +86,7 @@ export const toyStore = {
         .catch(err => {
           throw err
         })
-    },
+    }, 
     saveToy({ commit, dispatch }, { toy }) {
       const actionType = toy._id ? 'updateToy' : 'addToy'
       return toyService.save(toy).then(savedToy => {
