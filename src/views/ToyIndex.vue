@@ -1,10 +1,9 @@
 <!-- בס"ד -->
 
 <template>
-  <h1>toy index</h1>
-  {{ msg }}
   <ToyFilter />
-  <ToyList :toys="toys" />
+  <RouterLink to="/toy/edit">Add a toy</RouterLink>
+  <ToyList :toys="toys" @remove="remove" />
 </template>
 
 <script>
@@ -17,8 +16,12 @@ export default {
     return {};
   },
   created() {
-    this.$store
-      .dispatch({ type: "loadToys" })
+    this.$store.dispatch({ type: "loadToys" });
+  },
+  methods: {
+    remove(payload) {
+      this.$store.dispatch({ type: "removeToy", toyId: payload });
+    },
   },
   computed: {
     msg() {

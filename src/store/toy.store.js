@@ -4,7 +4,7 @@ import { toyService } from '../services/toy.service.js'
 
 export const toyStore = {
   state: {
-    toys: null,
+    toys: [],
     toysCount: null,
     currToy: null,
     filterBy: {
@@ -62,6 +62,8 @@ export const toyStore = {
       state.currToy = toy
     },
     addToy(state, { toy }) {
+      console.log('toy',toy)
+      console.log('state.toys',state.toys)
       state.toys.unshift(toy)
     },
     updateToy(state, { toy }) {
@@ -93,21 +95,20 @@ export const toyStore = {
         commit({ type: actionType, toy: savedToy })
         let txt = actionType === 'addToy' ? 'Added a toy' : 'Updated toy'
         txt += `: ${savedToy.txt}`
-        const activity = { txt, at: Date.now() }
-        dispatch({ type: 'addActivity', activity })
+        // const activity = { txt, at: Date.now() }
+        // dispatch({ type: 'addActivity', activity })
         return savedToy
       })
     },
     removeToy({ commit, dispatch, state }, payload) {
-      console.log('payload', payload)
 
       return toyService.remove(payload.toyId).then(() => {
         const toyTxt = state.toys.find(
           toy => toy._id === payload.toyId
         ).txt
         commit(payload) // {type: 'removeToy', toyId}
-        const activity = { txt: `Removed the toy ${toyTxt}`, at: Date.now() }
-        dispatch({ type: 'addActivity', activity })
+        // const activity = { txt: `Removed the toy ${toyTxt}`, at: Date.now() }
+        // dispatch({ type: 'addActivity', activity })
       })
     },
     getById({ commit }, { toyId }) {

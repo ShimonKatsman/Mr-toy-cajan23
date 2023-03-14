@@ -36,9 +36,14 @@ function debounce(func, wait) {
   }
 }
 
+function saveToStorage(key, val) {
+  localStorage[key] = JSON.stringify(val)
+}
+
 export const utilService = {
   makeId,
   getRandomInt,
   debounce,
   loadFromStorage,
+  saveToStorage,
 }

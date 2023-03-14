@@ -3,7 +3,7 @@
 <template>
   <ul>
     <li v-for="toy in toys" :key="toy._id">
-      <ToyPreview :toy="toy" />
+      <ToyPreview :toy="toy" @remove="remove" />
     </li>
   </ul>
 </template>
@@ -19,13 +19,17 @@ export default {
   data() {
     return {};
   },
-  methods: {},
-  computed: {},
-  created() {
+  methods: {
+    remove(payload) {
+      this.$emit("remove", payload);
+    },
   },
+  computed: {},
+  created() {},
   components: {
     ToyPreview,
   },
+  emits: ["remove"],
 };
 </script>
 
