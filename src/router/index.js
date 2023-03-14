@@ -7,6 +7,7 @@ import About from './../views/AboutView.vue'
 import ToyIndex from './../views/ToyIndex.vue'
 import ToyEdit from './../views/ToyEdit.vue'
 import ToyDetails from './../views/ToyDetails.vue'
+import DatePicker from './../views/DatePicker.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -35,6 +36,11 @@ const router = createRouter({
       path: '/toy/details/:toyId?',
       name: 'details',
       component: ToyDetails
+    },
+    {
+      path: '/toy/date-picker',
+      name: 'date-picker',
+      component: DatePicker
     },
   ]
 })
