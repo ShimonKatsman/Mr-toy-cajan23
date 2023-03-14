@@ -28,7 +28,6 @@ export default {
   },
   computed: {},
   created() {
-    console.log("example", this.$store.getters.toysToDisplay);
     if (this.$route.params.toyId) {
       this.$store
         .dispatch({

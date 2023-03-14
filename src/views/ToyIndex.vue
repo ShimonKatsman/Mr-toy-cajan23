@@ -13,7 +13,8 @@ import ToyFilter from "../components/ToyFilter.vue";
 export default {
   name: "ToyIndex",
   data() {
-    return {};
+    return {
+    };
   },
   created() {
     this.$store.dispatch({ type: "loadToys" });
