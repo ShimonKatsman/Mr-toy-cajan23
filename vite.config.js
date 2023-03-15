@@ -17,5 +17,6 @@ export default defineConfig({
     rollupOptions: {
       external: "/imgs/my-meme%20(3).jpg"
     }
-  }
+  },
+  base: './',
 })
