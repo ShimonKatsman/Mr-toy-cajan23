@@ -1,5 +1,5 @@
 <template>
- <h1>header</h1>
+ <h1 class="success-dark puki">header</h1>
  <AppNav />
 </template>
 

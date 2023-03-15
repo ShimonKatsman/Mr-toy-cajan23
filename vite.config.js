@@ -11,8 +11,11 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  build:{
+  build: {
     outDir: '../backend/public',
-    emptyOutDir: true
+    emptyOutDir: true,
+    rollupOptions: {
+      external: "/imgs/my-meme%20(3).jpg"
+    }
   }
 })

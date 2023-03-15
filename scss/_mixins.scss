@@ -1,0 +1,8 @@
+// בס"ד
+
+@mixin make-box($bcolor) {
+    padding: 1.4em;
+    border-radius: 0.8em;
+    border: 1px solid $bcolor;
+}
+

@@ -1,0 +1,52 @@
+// בס"ד
+
+@import "mixins";
+@import "vars";
+@import "buttons";
+
+body{
+font-family: $font-family-primary;  
+color: $color-primary;  
+}
+
+.item-box {
+    @include make-box(gray)
+}
+
+.item-sale-box {
+    @include make-box(tomato)
+}
+.success {
+    color: green;
+}
+
+.success-dark {
+    color: darken(green, 10%);
+}
+
+.toy {
+    .txt {
+        color: green;
+    }
+
+    img {
+        transition: all .8s ease-in-out;
+        max-width: 100px;
+
+        &:hover {
+            transform: rotate(90deg);
+        }
+    }
+
+    &-container {
+        background-color: #dbbebe;
+    }
+
+    &-container:hover {
+        background-color: lightcoral
+    }
+
+    &::before {
+        content: url('../imgs/my-meme\ \(3\).jpg');
+    }
+}

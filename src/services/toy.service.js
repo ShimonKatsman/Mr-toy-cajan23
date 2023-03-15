@@ -19,7 +19,7 @@ const BASE_URL = 'toy/'
 const API = 'toy/'
 _createToys()
 
-function query(filter) {
+function query(filter={}) {
     // return storageService.query(KEY, filter)
     return httpService.get(BASE_URL, filter)/* .then(res => {
         console.log('res',res)

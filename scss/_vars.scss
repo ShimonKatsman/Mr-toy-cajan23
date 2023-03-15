@@ -1,0 +1,14 @@
+// בס"ד
+
+$color-text-default: #424954;
+$color-text-light: #EBEBEB;
+$color-primary: #8465D9;
+$color-danger: #E83043;
+$font-family-primary: Roboto, 'Open Sans', Helvetica Neue, sans-serif;
+$font-family-secondary: Georgia, TimesNew Roman, serif;
+// Interpolation:
+$puki: puki;
+
+.#{$puki}:after {
+    content:"#{$puki}";
+}

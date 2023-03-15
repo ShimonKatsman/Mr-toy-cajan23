@@ -1,5 +1,5 @@
 <template>
- <h1>footer</h1>
+ <h1 class="success">footer</h1>
 </template>
 
 <script>
