@@ -2,7 +2,7 @@
 
 <template>
 <section class="toy">
-  <img src="/imgs/my-meme (3).jpg">
+  <img src="@/assets/imgs/my-meme(3).jpg">
   <section class="toy-container item-box">
   <RouterLink :to="'/toy/details/' + toy._id">{{ toy.name }}</RouterLink>
   <h4 class="txt item-sale-box">{{ toy.price }}</h4>
