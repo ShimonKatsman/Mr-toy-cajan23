@@ -22,16 +22,6 @@ export const toyStore = {
     toy({ currToy }) {
       return currToy
     },
-    donePct({ toys }) {
-      if (!toys || !toys.length) return 0
-      const dones = toys.reduce(
-        (acc, toy) => (toy.isDone ? acc + 1 : acc),
-        0
-      )
-      const total = toys.length
-
-      return ((dones / total) * 100).toFixed(2)
-    },
     toysToDisplay({ filterBy, toys }) {
       if (!toys) return null
 
@@ -62,8 +52,8 @@ export const toyStore = {
       state.currToy = toy
     },
     addToy(state, { toy }) {
-      console.log('toy',toy)
-      console.log('state.toys',state.toys)
+      console.log('toy', toy)
+      console.log('state.toys', state.toys)
       state.toys.unshift(toy)
     },
     updateToy(state, { toy }) {
@@ -79,51 +69,48 @@ export const toyStore = {
     },
   },
   actions: {
-    loadToys(context) {
-      return toyService
-        .query()
-        .then(toys => {
-          context.commit({ type: 'setToys', toys })
-        })
-        .catch(err => {
-          throw err
-        })
-    }, 
-    saveToy({ commit, dispatch }, { toy }) {
+    async loadToys(context) {
+      try {
+        const toys = await toyService.query()
+        context.commit({ type: 'setToys', toys })
+      }
+      catch (err) {
+        throw err
+      }
+    },
+    async saveToy({ commit, dispatch }, { toy }) {
       const actionType = toy._id ? 'updateToy' : 'addToy'
-      return toyService.save(toy).then(savedToy => {
+      try {
+        const savedToy = await toyService.save(toy)
         commit({ type: actionType, toy: savedToy })
         let txt = actionType === 'addToy' ? 'Added a toy' : 'Updated toy'
         txt += `: ${savedToy.txt}`
-        // const activity = { txt, at: Date.now() }
-        // dispatch({ type: 'addActivity', activity })
-        return savedToy
-      })
-    },
-    removeToy({ commit, dispatch, state }, payload) {
 
-      return toyService.remove(payload.toyId).then(() => {
-        const toyTxt = state.toys.find(
-          toy => toy._id === payload.toyId
-        ).txt
-        commit(payload) // {type: 'removeToy', toyId}
-        // const activity = { txt: `Removed the toy ${toyTxt}`, at: Date.now() }
-        // dispatch({ type: 'addActivity', activity })
-      })
+        return savedToy
+      }
+      catch (err) {
+        console.log(err)
+      }
     },
-    getById({ commit }, { toyId }) {
-      return toyService.getById(toyId).then(toy => {
+    async removeToy({ commit, dispatch, state }, payload) {
+      try {
+        await toyService.remove(payload.toyId)
+        commit(payload) 
+      }
+      catch (err) {
+        console.log(err);
+      }
+    },
+    async getById({ commit }, { toyId }) {
+      try {
+        const toy = await toyService.getById(toyId)
         commit({ type: 'setCurrToy', toy })
+
         return toy
-      })
+      }
+      catch (err) {
+        console.log('err', err)
+      }
     },
   },
-  // loadToys({ commit }, { filterBy }) {
-  //   toyService
-  //     .query(filterBy)
-  //     .then(toys => commit({ type: 'setToys', toys }))
-  //     .catch(err => {
-  //       throw err
-  //     })
-  // },
 }
