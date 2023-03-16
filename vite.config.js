@@ -14,9 +14,5 @@ export default defineConfig({
   build: {
     outDir: '../backend/public',
     emptyOutDir: true,
-    rollupOptions: {
-      external: "/imgs/my-meme%20(3).jpg"
-    }
   },
-  base: './',
 })

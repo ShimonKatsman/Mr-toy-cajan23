@@ -47,6 +47,6 @@ color: $color-primary;
     }
 
     &::before {
-        content: url('../imgs/my-meme\ \(3\).jpg');
+        content: url('@/assets/imgs/my-meme\(3\).jpg');
     }
 }
